@@ -28,14 +28,15 @@ export class UsersService {
   ];
 
   createUser(createUserDto: CreateUserDto) {
+    const timeElapsed = Date.now();
+    const today = new Date(timeElapsed);
     const newUser = {
       ...createUserDto,
-    updatedAt: Date.now().toString()
+      updatedAt: today.toISOString(),
+    };
+    this.users.push(newUser);
 
-    }
-    this.users.push(newUser)
-
-    return this.findAllUsers()
+    return this.findAllUsers();
   }
 
   findAllUsers() {
@@ -43,7 +44,7 @@ export class UsersService {
   }
 
   findOneUser(id: string) {
-    const user = this.users.find((user) => user.id == id);
+    const user = this.users.find((user) => user.id === id);
 
     if (!user) {
       throw new Error('no user found :(');

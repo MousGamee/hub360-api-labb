@@ -5,5 +5,5 @@ export class CreateUserDto {7
     firstname: string
     role: string
     _deleted: boolean
-    updatedAt: Date
+    updatedAt: string
 }
